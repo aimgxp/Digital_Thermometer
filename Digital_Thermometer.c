@@ -1,6 +1,6 @@
 /*
  * File:   Digital_Thermometer.c
- * Author: A. In·cio Morais
+ * Author: A. In√°cio Morais
  * 
  * PIC16F886 - MPLAB X IDE v5.40 - XC8-CC v2.30
  * MCLRE OFF - INTRC_NOCLKOUT 8 MHz
@@ -319,32 +319,32 @@ void main(void) {
         //LCDPutChar(0xAB); // <<
         //LCDPutChar(0xBB); // >>
         //LCDPutChar(0xB0); // Degree Symbol
-        //LCDPutChar(0xC0); // ¿
-        //LCDPutChar(0xE0); // ‡
-        //LCDPutChar(0xC1); // ¡
-        //LCDPutChar(0xE1); // ·
-        //LCDPutChar(0xC2); // ¬
-        //LCDPutChar(0xE2); // ‚
-        //LCDPutChar(0xC3); // √
-        //LCDPutChar(0xE3); // „
-        //LCDPutChar(0xC9); // …
-        //LCDPutChar(0xE9); // È
-        //LCDPutChar(0xCA); //  
-        //LCDPutChar(0xEA); // Í
-        //LCDPutChar(0xCD); // Õ
-        //LCDPutChar(0xED); // Ì
-        //LCDPutChar(0xD3); // ”
-        //LCDPutChar(0xF3); // Û
-        //LCDPutChar(0xD4); // ‘
-        //LCDPutChar(0xF4); // Ù
-        //LCDPutChar(0xD5); // ’
-        //LCDPutChar(0xF5); // ı
-        //LCDPutChar(0xF6); // ˆ
-        //LCDPutChar(0xC7); // «
-        //LCDPutChar(0xE7); // Á
-        //LCDPutChar(0xDA); // ⁄
-        //LCDPutChar(0xFA); // ˙
-        //LCDPutChar(0xFC); // ¸
+        //LCDPutChar(0xC0); // √Ä
+        //LCDPutChar(0xE0); // √†
+        //LCDPutChar(0xC1); // √Å
+        //LCDPutChar(0xE1); // √°
+        //LCDPutChar(0xC2); // √Ç
+        //LCDPutChar(0xE2); // √¢
+        //LCDPutChar(0xC3); // √É
+        //LCDPutChar(0xE3); // √£
+        //LCDPutChar(0xC9); // √â
+        //LCDPutChar(0xE9); // √©
+        //LCDPutChar(0xCA); // √ä
+        //LCDPutChar(0xEA); // √™
+        //LCDPutChar(0xCD); // √ç
+        //LCDPutChar(0xED); // √≠
+        //LCDPutChar(0xD3); // √ì
+        //LCDPutChar(0xF3); // √≥
+        //LCDPutChar(0xD4); // √î
+        //LCDPutChar(0xF4); // √¥
+        //LCDPutChar(0xD5); // √ï
+        //LCDPutChar(0xF5); // √µ
+        //LCDPutChar(0xF6); // √∂
+        //LCDPutChar(0xC7); // √á
+        //LCDPutChar(0xE7); // √ß
+        //LCDPutChar(0xDA); // √ö
+        //LCDPutChar(0xFA); // √∫
+        //LCDPutChar(0xFC); // √º
         
     //WINSTAR WH1602C English and European standard font (ET) - See Extended ASCII table
         
@@ -374,7 +374,7 @@ void main(void) {
         LCDGoto(0,0);
         LCDPutStr("Temperature:    ");
         
-        if ((vin2 < 0.5 && mode == 0) || (vin2 < 0.322222 && mode == 1)) { // 0.5 V = 0 ∞C - According to LM50 datasheet: VO = (+10 mV/∞C ◊ T ∞C) + 500 mV   
+        if ((vin2 < 0.5 && mode == 0) || (vin2 < 0.322222 && mode == 1)) { // 0.5 V = 0 ¬∞C - According to LM50 datasheet: VO = (+10 mV/¬∞C √ó T ¬∞C) + 500 mV   
             if (mode == 0 ) temp0 = (unsigned int)((((vin2 - 0.500) / 0.01) - 0.5 ) * -100.0); // -0.5 - Float rounding before integer conversion
             else temp0 = (unsigned int)(((vin2 * 180.0 - 58.0) - 0.5 ) * -100.0);
             
@@ -399,15 +399,15 @@ void main(void) {
             else {
                 LCDGoto(0,1);
                 LCDPutStr("    -");
-                ch = temp0 / 1000; // Extract first digit (integer part)
+                ch = temp0 / 1000; // Extract first digit (integer part - ones)
                 LCDPutChar(48+ch);
                                          
-                ch = (temp0 / 100) % 10; // Extracts second digit (tenths)
+                ch = (temp0 / 100) % 10; // Extracts second digit (integer part - tens)
                 LCDPutChar(48+ch);
                 
                 LCDPutStr(".");
                 
-                ch = (temp0 / 10) % 10; // Extract third digit (hundredths)
+                ch = (temp0 / 10) % 10; // Extracts second digit (tenths)
                 LCDPutChar(48+ch);
                 
                 LCDPutChar(0x00);
