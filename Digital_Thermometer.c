@@ -309,7 +309,7 @@ void main(void) {
     // LCDPutChar(0x00); // Calling the first CGRAM character [CGRAM(1)]
     // LCDPutChar(0x01); // Calling the second CGRAM character [CGRAM(2)]
     // [...]
-    // LCDPutChar(0x07); // Calling the eighth CGRAM character [CGRAM(1)]
+    // LCDPutChar(0x07); // Calling the eighth CGRAM character [CGRAM(8)]
     
     // How to call some special built-in characters:
     
