@@ -386,7 +386,7 @@ void main(void) {
                 
                 LCDPutStr(".");
                 
-                ch = temp0 % 10; // Extracts second digit (tenths)
+                ch = temp0 % 10; // Extract second digit (tenths)
                 LCDPutChar(48+ch);
                 
                 LCDPutChar(0x00);
@@ -402,12 +402,12 @@ void main(void) {
                 ch = temp0 / 1000; // Extract first digit (integer part - tens)
                 LCDPutChar(48+ch);
                                          
-                ch = (temp0 / 100) % 10; // Extracts second digit (integer part - ones)
+                ch = (temp0 / 100) % 10; // Extract second digit (integer part - ones)
                 LCDPutChar(48+ch);
                 
                 LCDPutStr(".");
                 
-                ch = (temp0 / 10) % 10; // Extracts third digit (tenths)
+                ch = (temp0 / 10) % 10; // Extract third digit (tenths)
                 LCDPutChar(48+ch);
                 
                 LCDPutChar(0x00);
