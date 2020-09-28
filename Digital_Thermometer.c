@@ -285,8 +285,7 @@ unsigned int ADC_read() {
      * This bit is automatically cleared by hardware when the A/D conversion has completed. */
     
     while (ADCON0bits.GO_nDONE == 1); // Wait 0 (A/D conversion completed/not in progress)
-    return ((ADRESH << 8) + ADRESL);
-    
+    return ((ADRESH << 8) + ADRESL);    
 }
 
 void main(void) {
