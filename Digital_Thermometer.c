@@ -407,7 +407,7 @@ void main(void) {
                 
                 LCDPutStr(".");
                 
-                ch = (temp0 / 10) % 10; // Extracts second digit (tenths)
+                ch = (temp0 / 10) % 10; // Extracts third digit (tenths)
                 LCDPutChar(48+ch);
                 
                 LCDPutChar(0x00);
