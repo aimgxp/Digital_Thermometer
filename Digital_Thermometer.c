@@ -399,10 +399,10 @@ void main(void) {
             else {
                 LCDGoto(0,1);
                 LCDPutStr("    -");
-                ch = temp0 / 1000; // Extract first digit (integer part - ones)
+                ch = temp0 / 1000; // Extract first digit (integer part - tens)
                 LCDPutChar(48+ch);
                                          
-                ch = (temp0 / 100) % 10; // Extracts second digit (integer part - tens)
+                ch = (temp0 / 100) % 10; // Extracts second digit (integer part - ones)
                 LCDPutChar(48+ch);
                 
                 LCDPutStr(".");
