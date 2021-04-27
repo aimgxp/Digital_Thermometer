@@ -15,7 +15,7 @@
  * In a real-world application consider NOT applying a bypass capacitor (filter) with the LM50 component in order to ensure the noisy state required by the oversampling technique
  * And, implement a calibration variable if necessary
  * 
- * Can you help me with a small donation? PayPal: anderson.morais@protonmail.com
+ * anderson.morais@protonmail.com - (35)991619878
  * 
  * Created on 28 de Setembro de 2020, 15:00
  */
