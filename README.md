@@ -1,4 +1,4 @@
-# Digital_Thermometer
+# PIC16 Digital Thermometer
 Digital Thermometer using PIC microcontroller (PIC16F886) and MPLAB X IDE v5.40 - XC8-CC v2.30.
 
 16x2 LCD Display (CGRAM Custom Character Handling), Pushbutton (Input with the Internal Pull-Up Resistor Enabled), LM50 Temperature Sensor, and Oversampled ADC Readings.
