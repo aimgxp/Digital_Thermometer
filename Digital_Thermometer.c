@@ -10,7 +10,7 @@
  * 
  * Celsius / Fahrenheit Measures (Mode Selected by a Pushbutton)
  *
- * LCD Display interface based on the LCD library provided by Microchip (PICDEM 2 Plus Demo Board)
+ * LCD Display interface based on a LCD library provided by Microchip (PICDEM 2 Plus Demo Board)
  * https://www.microchip.com/en-us/development-tool/DM163022-1
  * https://ww1.microchip.com/downloads/en/DeviceDoc/PICDEM2pluscode.zip
  * 
