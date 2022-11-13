@@ -10,7 +10,7 @@
  * 
  * Celsius / Fahrenheit Measures (Mode Selected by a Pushbutton)
  *
- * LCD Display interface based on a LCD library provided by Microchip (PICDEM 2 Plus Demo Board)
+ * LCD Display interface based on the PICDEM 2 Plus Demo Board LCD library provided by Microchip:
  * https://www.microchip.com/en-us/development-tool/DM163022-1
  * https://ww1.microchip.com/downloads/en/DeviceDoc/PICDEM2pluscode.zip
  * 
@@ -69,13 +69,7 @@
 // display controller setup commands from page 46 of Hitachi datasheet or page 17 of Winstar comprehensive datasheet (Ex.: WH1602B-TMI-ET#)
 #define FUNCTION_SET        0x28                         // 4 bit interface, 2 lines, 5x8 font
 #define ENTRY_MODE          0x06                         // increment mode
-#define DISPLAY_SETUP       0x0C                         // display on, cursor off, blink offd
-
-#define LCDLine1()          LCDPutCmd(LCD_HOME)          
-#define LCDLine2()          LCDPutCmd(LCD_CURSOR_LINE2)  
-#define shift_cursor()      LCDPutCmd(LCD_CURSOR_FWD)    
-#define cursor_on()         LCDPutCmd(LCD_CURSOR_ON)     
-#define DisplayClr()        LCDPutCmd(LCD_CLEAR)         
+#define DISPLAY_SETUP       0x0C                         // display on, cursor off, blink off
 
 // single bit for selecting command register or data register
 #define instr        0
@@ -83,25 +77,13 @@
 
 // These #defines create the pin connections to the LCD Display
 #define LCD_PORT     PORTC
-//#define LCD_PWR      LATCbits.LATCX                      // LCD power pin - It can be connected directly to +5Vdd line in order to save a MCU pin
 #define LCD_EN       PORTCbits.RC5                      // LCD enable
-//#define LCD_RW       LATCbits.LATCX                      // LCD READ/nWRITTE line - It can be connected directly to GND line in order to save a MCU pin (LCD Display always as WRITE Mode)
 #define LCD_RS       PORTCbits.RC4                      // LCD register select line
 
 #define NB_LINES    2                                   // Number of display lines
 #define NB_COL      16                                  // Number of characters per line
 
-// Functions
-/**
-  @Summary
-    Function to write a nibble
-
-  @Description
-    This function writes the specified nibble to the LCD.
-
-  @Param
-    data byte to be written to display
-*/
+// Function to write a specified nibble to the LCD
 void LCDWriteNibble(unsigned char ch,unsigned char rs)
 {
     // always send the upper nibble
@@ -129,16 +111,7 @@ void LCDWriteNibble(unsigned char ch,unsigned char rs)
     LCD_EN = 0;
 }
 
-/**
-  @Summary
-    send an ASCII command to the LCD in instruction mode
-
-  @Description
-    This routine writes character to LCD command register
-  
-  @Param
-    ASCII command  
-*/
+// Send an ASCII command to the LCD in instruction mode
 void LCDPutCmd(unsigned char ch) {
     __delay_ms(LCD_delay);
 
@@ -154,14 +127,8 @@ void LCDPutCmd(unsigned char ch) {
     LCDWriteNibble(ch,instr);
 }
 
-/**
-  @Summary
-    initialize the LCD module
-
-  @Description
-    This routine initializes the LCD driver.
-    This routine must be called before any other LCD routine is called.  
-*/
+// This routine initializes the LCD driver
+// This routine must be called before any other LCD routine is called 
 void LCD_Initialize() {
     // clear latches before enabling TRIS bits
     LCD_PORT = 0;
@@ -183,22 +150,13 @@ void LCD_Initialize() {
     // turn on display and sets up cursor
     LCDPutCmd(DISPLAY_SETUP);
     
-    DisplayClr();
+    LCDPutCmd(LCD_CLEAR);
 
     // set cursor movement direction
     LCDPutCmd(ENTRY_MODE);
 }
 
- /**
-  @Summary
-    Writes character to LCD at current cursor position
-
-  @Description
-    This function displays the specified ASCII character at current position on the LCD
-
-  @Param
-    ASCII character to be displayed
-*/
+// Writes character to LCD at current cursor position
 void LCDPutChar(unsigned char ch) {
     __delay_ms(LCD_delay);
 
@@ -212,16 +170,7 @@ void LCDPutChar(unsigned char ch) {
     LCDWriteNibble(ch,data);
 }
 
-/**
-  @Summary
-    display a string
-
-  @Description
-    This routine writes string to LCD at current cursor position
-
-  @Param
-    Pointer to string
-*/
+// This routine writes string to LCD at current cursor position
 void LCDPutStr(const char *str) {
     unsigned char i = 0;
     
@@ -233,20 +182,7 @@ void LCDPutStr(const char *str) {
     }    
 }                      
 
-/**
-  @Summary
-    Initialization routine that takes inputs from the EUSART GUI.
-
-  @Description
-    This function positions the cursor at the specified Line and column.
-
-  @Param
-    Column and line at which the cursor should be positioned at
-
-  @Comment
-      0 <= pos <= 15
-      0 <= ln <= 1
-*/
+// This function positions the cursor at the specified Line and column
 void LCDGoto(unsigned char pos,unsigned char ln) {
     // if incorrect line or column
     if ((ln > (NB_LINES-1)) || (pos > (NB_COL-1)))
