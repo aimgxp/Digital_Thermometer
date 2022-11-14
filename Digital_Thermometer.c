@@ -101,9 +101,6 @@ void LCDWriteNibble(unsigned char ch,unsigned char rs)
     //set data/instr bit to 0 = instructions; 1 = data
     LCD_RS = rs;
 
-    // RW - set write mode
-    //LCD_RW = 0;
-
     // set up enable before writing nibble
     LCD_EN = 1;
 
@@ -132,11 +129,7 @@ void LCDPutCmd(unsigned char ch) {
 void LCD_Initialize() {
     // clear latches before enabling TRIS bits
     LCD_PORT = 0;
-
     TRISC = 0x00;
-
-    // power up the LCD
-    //LCD_PWR = 1;
 
     // required by display controller to allow power to stabilize
     __delay_ms(LCD_Startup);
